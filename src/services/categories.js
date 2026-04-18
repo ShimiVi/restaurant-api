@@ -22,4 +22,10 @@ const update = async(id ,name, description) => {
     return result.rows[0]; 
 }
 
-module.exports = { getAll , getById, create, update};
+const deleteOne = async(id) => {
+    const result = await pool.query('DELETE FROM categories WHERE id = $1 RETURNING *',
+    [id]); 
+    return result.rows[0]; 
+}
+
+module.exports = { getAll , getById, create, update, deleteOne};

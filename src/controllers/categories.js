@@ -44,4 +44,15 @@ const update = async (req,res) => {
         }
 }; 
 
-module.exports = { getAll, getById, create, update };
+const deleteOne = async(req, res) => {
+    try{
+        const {id} = req.params;
+        const category = await categoriesService.deleteOne(id);
+        res.status(204).send(); 
+    }
+    catch(error){
+        res.status(500).json({message: error.message});
+    }
+};
+
+module.exports = { getAll, getById, create, update, deleteOne};
