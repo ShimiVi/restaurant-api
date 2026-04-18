@@ -16,4 +16,10 @@ const create = async(name, description) => {
     return result.rows[0]; 
 }
 
-module.exports = { getAll , getById, create};
+const update = async(id ,name, description) => {
+    const result = await pool.query('UPDATE categories SET name=$1 , description=$2 WHERE id=$3 RETURNING *',
+    [name, description ,id]);
+    return result.rows[0]; 
+}
+
+module.exports = { getAll , getById, create, update};
