@@ -5,4 +5,9 @@ const getAll = async() =>{
     return result.rows; 
 }
 
-module.exports = { getAll };
+const getById = async(id) => {
+    const result = await pool.query('select * from categories WHERE id = $1', [id]);
+    return result.rows[0];
+}
+
+module.exports = { getAll , getById};
