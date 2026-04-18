@@ -10,4 +10,10 @@ const getById = async(id) => {
     return result.rows[0];
 }
 
-module.exports = { getAll , getById};
+const create = async(name, description) => {
+    const result = await pool.query('INSERT INTO categories(name, description) VALUES($1 , $2) RETURNING *',
+    [name, description]); 
+    return result.rows[0]; 
+}
+
+module.exports = { getAll , getById, create};
