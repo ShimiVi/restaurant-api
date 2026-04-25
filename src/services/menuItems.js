@@ -11,7 +11,7 @@ const getById = async(id) =>{
     return result.rows[0]; 
 }
 
-const create = async(name,price,category_id,is_available) => {
+const create = async(name,price,category_id,is_available = true) => {
     const result = await pool.query('insert into menu_items(name,price,category_id,is_available) values ($1,$2,$3,$4) RETURNING *', [name,price,category_id,is_available]); 
     return result.rows[0];
 }
