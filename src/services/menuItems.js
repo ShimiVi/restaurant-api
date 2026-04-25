@@ -16,7 +16,7 @@ const create = async(name,price,category_id,is_available = true) => {
     return result.rows[0];
 }
 
-const update = async(id,name,price,category_id,is_available) => {
+const update = async(id,name,price,category_id,is_available = true) => {
     const result = await pool.query('update menu_items set name=$1, price=$2, category_id=$3, is_available=$4 where id=$5 RETURNING *', [name,price,category_id,is_available,id]);
     return result.rows[0]; 
 }
