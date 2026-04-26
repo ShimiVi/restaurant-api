@@ -44,3 +44,13 @@ CREATE TABLE order_items(
     price DECIMAL (10,2) NOT NULL
 );
 
+CREATE TYPE user_role AS ENUM ('owner', 'manager', 'customer'); 
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY, 
+    name varchar(100) NOT NULL, 
+    email varchar(255) UNIQUE NOT NULL, 
+    password varchar(255) NOT NULL, 
+    role user_role DEFAULT 'customer', 
+    created_at TIMESTAMP DEFAULT NOW()
+); 
