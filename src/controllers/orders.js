@@ -17,6 +17,10 @@ const getById = async(req,res) =>{
         if(!orders){
             return res.status(404).json({message: 'Order not found'}); 
         }
+
+        if (req.user.role === 'customer' && orders.customer_id !== req.user.id) {
+            return res.status(403).json({ message: 'Permission denied' });
+        }
         res.json(orders); 
     }
     catch(error){
