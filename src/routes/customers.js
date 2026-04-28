@@ -1,12 +1,13 @@
 const express = require('express'); 
 const customersController = require('../controllers/customers');
+const {verifyToken, checkRole} = require('../middleware/auth')
 
 const router = express.Router(); 
 
-router.get('/',customersController.getAll);
-router.get('/:id',customersController.getById);
+router.get('/',verifyToken,checkRole('owner','manager'),customersController.getAll);
+router.get('/:id',verifyToken,checkRole('owner','manager'),customersController.getById);
 router.post('/',customersController.create); 
-router.put('/:id',customersController.update);
+router.put('/:id',verifyToken, checkRole('owner', 'manager'),customersController.update);
 
 
 module.exports = router; 
