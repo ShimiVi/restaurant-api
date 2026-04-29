@@ -1,0 +1,1 @@
+ALTER TABLE customers ADD user_id INT REFERENCES users(id);
