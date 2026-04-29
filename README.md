@@ -73,3 +73,23 @@ GET    /orders
 GET    /orders/:id
 POST   /orders
 PUT    /orders/:id
+
+
+## Authentication
+
+### Roles
+- `owner` — full access to everything
+- `manager` — manage menu, categories and orders
+- `customer` — create orders and view own orders only
+
+### How to use
+1. Register: `POST /auth/register`
+2. Login: `POST /auth/login` → get token
+3. Add token to every protected request:
+
+Authorization: your_token_here
+
+### Auth Endpoints
+POST /auth/register
+POST /auth/login
+
