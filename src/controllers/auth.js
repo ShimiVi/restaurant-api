@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken');
 const register = async (req ,res) => {
 
     try{
-    const {name, email, password, role} = req.body; 
+    const {name,phone, email, password, role} = req.body; 
 
-    if(!name || !email || !password){
-        return res.status(400).json({message: 'name, email and password are required'});  
+    if(!name ||!phone || !email || !password){
+        return res.status(400).json({message: 'name, phone, email and password are required'});  
     }
 
-    const user = await authService.register(name,email,password,role);
+    const user = await authService.register(name,phone,email,password,role);
     res.status(201).json(user);
     }
     catch(error){

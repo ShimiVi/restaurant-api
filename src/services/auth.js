@@ -1,7 +1,7 @@
 const pool = require('../db'); 
 const bcrypt = require('bcrypt'); 
 
-const register = async(name,email,password,role) => {
+const register = async(name,phone,email,password,role) => {
 
     const saltRounds = 10; 
     const hashedPassword = await bcrypt.hash(password, saltRounds); 
@@ -9,7 +9,11 @@ const register = async(name,email,password,role) => {
     const result = await pool.query('INSERT INTO users (name, email, password, role) values ($1,$2,$3,$4) RETURNING id, name, email, role' , 
         [name,email,hashedPassword,role]
     );
-    return result.rows[0]; 
+    const user = result.rows[0]; 
+    const customer = await pool.query('INSERT INTO customers (name ,phone ,user_id) values($1, $2, $3) RETURNING name , user_id', 
+        [name ,phone ,user.id]
+    );
+    return user; 
 };
 
 const login = async(email,password) =>{
