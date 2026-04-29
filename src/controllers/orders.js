@@ -30,12 +30,10 @@ const getById = async(req,res) =>{
 
 const create = async(req,res) => {
     try{
-        const{customer_id, items} =req.body; 
+        const customer_id = req.user.id; 
+        const{items} =req.body; 
 
         const errors = {};
-        if(!customer_id){
-            errors.customer_id = 'Customer is required';
-        }
 
         if(!items || !Array.isArray(items) || items.length === 0){
             errors.items ='items must be a non-empty array'; 
