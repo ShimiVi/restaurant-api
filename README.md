@@ -1,621 +1,95 @@
-{
-  "info": {
-    "_postman_id": "00142d97-e9f1-4fd2-946c-1ebc54d07085",
-    "name": "restaurant-api",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "47531201",
-    "_collection_link": "https://go.postman.co/collection/47531201-00142d97-e9f1-4fd2-946c-1ebc54d07085?source=collection_link"
-  },
-  "item": [
-    {
-      "name": "categories",
-      "item": [
-        {
-          "name": "GET all categories",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/categories",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "categories"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET category by id",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/categories/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "categories",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "POST create category",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"קינוחים\",\n  \"description\": \"קינוחים טעימים\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/categories",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "categories"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "PUT update category",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"קינוחים 2\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/categories/4",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "categories",
-                "4"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE delete category",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/categories/3",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "categories",
-                "3"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "menu-items",
-      "item": [
-        {
-          "name": "DELETE delete menu_items",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "http://localhost:3000/menu-items/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "menu-items",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET all menu_items",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/menu-items",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "menu-items"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET menu_item by id",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/menu-items/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "menu-items",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "POST create menu_items",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"טסט\",\n  \"price\": \"20\",\n  \"category_id\": 1\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/menu-items",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "menu-items"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "PUT update menu_items",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"שקשוקה\",\n  \"price\": 40,\n  \"category_id\": 1,\n  \"is_available\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/menu-items/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "menu-items",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "customers",
-      "item": [
-        {
-          "name": "GET all customers",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/customers",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "customers"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET customers by id",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/customers/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "customers",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "POST create customers",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"יוסי כהן\",\n  \"phone\": \"0521234567\",\n  \"email\": \"yosi@gmail.com\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/customers",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "customers"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "PUT update customers",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"יוסי פרץ\",\n  \"phone\": \"0521234567\",\n  \"email\": \"yosi@gmail.com\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/customers/2",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "customers",
-                "2"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "orders",
-      "item": [
-        {
-          "name": "GET all orders",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "http://localhost:3000/orders",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "orders"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET orders by id",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/orders/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "orders",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "PUT update orders",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"status\": \"confirmed\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/orders/2",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "orders",
-                "2"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "POST create orders",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"items\": [\n    { \"menu_item_id\": 1, \"quantity\": 2 }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/orders",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "orders"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "auth",
-      "item": [
-        {
-          "name": "POST login",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "const response = pm.response.json();",
-                  "pm.environment.set(\"token\", response.token);"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"email\": \"test4@test.com\",\n    \"password\": \"123456\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/auth/login",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "auth",
-                "login"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "POST register",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Test\",\n    \"email\": \"shimi@gmail.com\",\n    \"password\": \"1234\",\n    \"role\": \"customer\",\n    \"phone\": \"0501234567\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/auth/register",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "auth",
-                "register"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
-}
+# RESTAURANT API 
+
+REST API for a takeaway restaurant ordering system
+
+## Tech Stack 
+
+- Node.js
+- Express
+- PostgreSQL
+
+## About
+
+This project was built as a learning exercise to develop backend skills.
+It demonstrates a real-world REST API with proper architecture,
+database relationships, business logic, and error handling.
+
+## Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/ShimiVi/restaurant-api.git
+cd restaurant-api
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Create `.env` file
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=restaurant_db
+DB_USER=your_username
+DB_PASSWORD=your_password
+```
+
+4. Run database migrations
+```bash
+psql -U your_username -d restaurant_db -f database/migrations/001_initial_schema.sql
+```
+
+5. Start the server
+```bash
+node server.js
+```
+
+## Endpoints
+
+### Categories
+GET    /categories
+GET    /categories/:id
+POST   /categories
+PUT    /categories/:id
+DELETE /categories/:id
+
+### Menu Items
+GET    /menu-items
+GET    /menu-items/:id
+POST   /menu-items
+PUT    /menu-items/:id
+DELETE /menu-items/:id
+
+### Customers
+GET    /customers
+GET    /customers/:id
+POST   /customers
+PUT    /customers/:id
+
+### Orders
+GET    /orders
+GET    /orders/:id
+POST   /orders
+PUT    /orders/:id
+
+
+## Authentication
+
+### Roles
+- `owner` — full access to everything
+- `manager` — manage menu, categories and orders
+- `customer` — create orders and view own orders only
+
+### How to use
+1. Register: `POST /auth/register`
+2. Login: `POST /auth/login` → get token
+3. Add token to every protected request:
+
+Authorization: your_token_here
+
+### Auth Endpoints
+POST /auth/register
+POST /auth/login
+
