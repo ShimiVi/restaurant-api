@@ -10,6 +10,14 @@ const getById = async(id) =>{
     return result.rows[0]; 
 }
 
+const getCustomerByUserId = async(user_id) => {
+    const result = await pool.query('select * from  customers where user_id = $1', 
+        [user_id]
+    ); 
+    return result.rows[0];
+}
+
+
 const create = async (customer_id, items) => {
     const client = await pool.connect();    
     try{
@@ -43,6 +51,7 @@ const create = async (customer_id, items) => {
     }
 };
 
+
 const updateStatus = async(id, status) => {
     const current = await pool.query('select * from orders where id=$1',
         [id]
@@ -66,4 +75,4 @@ const updateStatus = async(id, status) => {
 
 
 
-module.exports = {getAll, getById, create, updateStatus}; 
+module.exports = {getAll, getById , getCustomerByUserId, create, updateStatus}; 

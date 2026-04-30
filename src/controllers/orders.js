@@ -30,7 +30,8 @@ const getById = async(req,res) =>{
 
 const create = async(req,res) => {
     try{
-        const customer_id = req.user.id; 
+        const user_id = req.user.id; 
+        const customer = await ordersService.getCustomerByUserId(user_id); 
         const{items} =req.body; 
 
         const errors = {};
@@ -39,10 +40,14 @@ const create = async(req,res) => {
             errors.items ='items must be a non-empty array'; 
         }
 
+        if(!customer){
+            errors.customer = 'Customer not found' ; 
+        }
+
         if(Object.keys(errors).length > 0){
             return res.status(400).json({errors}); 
         }
-        const orders = await ordersService.create(customer_id, items); 
+        const orders = await ordersService.create(customer.id, items); 
         res.status(201).json(orders);
     }
     catch(error){
