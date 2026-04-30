@@ -6,6 +6,14 @@ const register = async(name,phone,email,password,role) => {
     const saltRounds = 10; 
     const hashedPassword = await bcrypt.hash(password, saltRounds); 
 
+    const existing = await pool.query('select id from users where email=$1', 
+        [email]
+    ); 
+    if(existing.rows[0]){
+        throw new Error("Email already exists");
+        
+    }
+
     const result = await pool.query('INSERT INTO users (name, email, password, role) values ($1,$2,$3,$4) RETURNING id, name, email, role' , 
         [name,email,hashedPassword,role]
     );
