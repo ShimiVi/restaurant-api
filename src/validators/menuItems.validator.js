@@ -6,4 +6,10 @@ const createSchema = Joi.object({
     category_id: Joi.number().positive().required()
 });
 
-module.exports = {createSchema}; 
+const updateSchema = Joi.object({
+    name: Joi.string().min(1).optional(),
+    price: Joi.number().positive().optional(), 
+    category_id: Joi.number().positive().optional()
+})
+
+module.exports = {createSchema , updateSchema}; 

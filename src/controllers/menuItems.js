@@ -1,5 +1,5 @@
 const menuItemsService = require('../services/menuitems'); 
-const { createSchema } = require('../validators/menuItems.validator'); 
+const { createSchema,updateSchema } = require('../validators/menuItems.validator'); 
 
 const getAll = async (req, res) => {
     try{
@@ -48,20 +48,9 @@ const update = async(req, res) => {
         const {id} = req.params; 
         const{name, price, category_id, is_available} = req.body; 
 
-        const errors = {}; 
-
-        if(!name){
-            errors.name = 'Name is required'; 
-        }
-        if(!price){
-            errors.price ='Price is required';
-        }
-        if(!category_id){
-            errors.category_id = 'Category is required'; 
-        }
-
-        if(Object.keys(errors).length > 0){
-            return res.status(400).json({errors}); 
+        const{error: errorJoi} =  updateSchema.validate(req.body); 
+        if(errorJoi){
+            return res.status(400).json({message: errorJoi.details[0].message}); 
         }
 
         const menuItems = await menuItemsService.update(id,name,price,category_id,is_available); 
