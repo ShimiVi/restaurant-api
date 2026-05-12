@@ -2,7 +2,7 @@ const authService = require('../services/auth');
 const jwt = require('jsonwebtoken'); 
 const {registerSchema , loginSchema} = require('../validators/auth.validator'); 
 
-const register = async (req ,res) => {
+const register = async (req ,res, next) => {
     try{
     const {name,phone, email, password, role} = req.body; 
 
@@ -19,11 +19,11 @@ const register = async (req ,res) => {
         if(error.message == 'Email already exists'){
             return res.status(400).json({message: error.message}); 
         }
-        return res.status(500).json({message: error.message}); 
+        return next(error);
     }
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     try{
     const{email , password } = req.body; 
 

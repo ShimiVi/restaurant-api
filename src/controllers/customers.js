@@ -2,18 +2,18 @@ const customersService = require('../services/customers');
 const { createSchema,updateSchema } = require('../validators/customers.validator'); 
 
 
-const getAll = async (req, res) => {
+const getAll = async (req, res , next) => {
     try{
         const customers = await customersService.getAll();
         res.json(customers);
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
     
 };
 
-const getById = async (req, res) => {
+const getById = async (req, res, next) => {
     try{
         const {id} = req.params;
         const customers = await customersService.getById(id); 
@@ -23,11 +23,11 @@ const getById = async (req, res) => {
         res.json(customers); 
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 };
 
-const create = async (req, res)=>{
+const create = async (req, res, next)=>{
     try{
         const {name,phone,email} = req.body; 
 
@@ -40,11 +40,11 @@ const create = async (req, res)=>{
         res.status(201).json(customers);
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 };
 
-const update = async (req, res) => {
+const update = async (req, res, next) => {
     try{
         const{id} = req.params;
         const{name,phone,email} = req.body;
@@ -62,7 +62,7 @@ const update = async (req, res) => {
         res.status(200).json(customers); 
     }
     catch(error){
-        res.status(500).json({message: error.message}); 
+        next(error); 
     }
 }; 
 

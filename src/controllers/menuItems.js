@@ -1,17 +1,17 @@
 const menuItemsService = require('../services/menuitems'); 
 const { createSchema,updateSchema } = require('../validators/menuItems.validator'); 
 
-const getAll = async (req, res) => {
+const getAll = async (req, res ,next) => {
     try{
         const menuItems = await menuItemsService.getAll(); 
         res.json(menuItems); 
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 }; 
 
-const getById = async (req, res) =>{
+const getById = async (req, res, next) =>{
     try{
         const {id} = req.params; 
         const menuItems = await menuItemsService.getById(id); 
@@ -21,11 +21,11 @@ const getById = async (req, res) =>{
         res.json(menuItems); 
     }
     catch(error){
-        res.status(500).json({message: error.message})
+        next(error);
     }
 };
 
-const create = async (req, res) => {
+const create = async (req, res, next) => {
     try{
         const{name, price, category_id, is_available} = req.body; 
 
@@ -38,12 +38,12 @@ const create = async (req, res) => {
         res.status(201).json(menuItems);
     }
     catch(error){
-        res.status(500).json({message: error.message}); 
+        next(error);
     }
 
 };
 
-const update = async(req, res) => {
+const update = async(req, res, next) => {
     try{
         const {id} = req.params; 
         const{name, price, category_id, is_available} = req.body; 
@@ -62,11 +62,11 @@ const update = async(req, res) => {
         res.status(200).json(menuItems);
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 };
 
-const deleteOne = async (req ,res) =>{
+const deleteOne = async (req ,res, next) =>{
     try{
         const {id} = req.params;
         const menuItems = await menuItemsService.deleteOne(id);
@@ -76,7 +76,7 @@ const deleteOne = async (req ,res) =>{
         res.status(204).send();  
     } 
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 }
 

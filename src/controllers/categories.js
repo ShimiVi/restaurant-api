@@ -2,16 +2,16 @@
 const categoriesService = require('../services/categories'); 
 const {createSchema, updateSchema} = require('../validators/categories.validator');
 
-const getAll = async (req, res)=>{
+const getAll = async (req, res, next)=>{
     try{
         const categories = await categoriesService.getAll(); 
         res.json(categories);
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 };
-const getById = async (req, res)=>{
+const getById = async (req, res, next)=>{
     try{
         const {id} = req.params;
         const categories = await categoriesService.getById(id); 
@@ -21,11 +21,11 @@ const getById = async (req, res)=>{
         res.json(categories);
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 };
 
-const create = async (req,res) => {
+const create = async (req,res,next) => {
     try{
         const {name , description} = req.body;
         
@@ -38,11 +38,11 @@ const create = async (req,res) => {
         res.status(201).json(category); 
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 };
     
-const update = async (req,res) => {
+const update = async (req,res,next) => {
         try{
             const {id} = req.params;
             const {name, description} = req.body;
@@ -59,11 +59,11 @@ const update = async (req,res) => {
             res.status(200).json(category);
         }
         catch(error){
-            res.status(500).json({message: error.message});
+            next(error);
         }
 }; 
 
-const deleteOne = async(req, res) => {
+const deleteOne = async(req, res,next) => {
     try{
         const {id} = req.params;
         const category = await categoriesService.deleteOne(id);
@@ -73,7 +73,7 @@ const deleteOne = async(req, res) => {
         res.status(204).send(); 
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        next(error);
     }
 };
 
