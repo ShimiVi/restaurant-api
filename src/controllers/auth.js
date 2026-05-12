@@ -1,13 +1,15 @@
 const authService = require('../services/auth'); 
 const jwt = require('jsonwebtoken'); 
+const {registerSchema , loginSchema} = require('../validators/auth.validator'); 
 
 const register = async (req ,res) => {
-
     try{
     const {name,phone, email, password, role} = req.body; 
 
-    if(!name ||!phone || !email || !password){
-        return res.status(400).json({message: 'name, phone, email and password are required'});  
+    const {error: errorJoi} = registerSchema.validate(req.body);
+    
+    if(errorJoi){
+        return res.status(400).json({message: errorJoi.details[0].message})
     }
 
     const user = await authService.register(name,phone,email,password,role);
@@ -25,9 +27,11 @@ const login = async (req, res) => {
     try{
     const{email , password } = req.body; 
 
-    if(!email || !password){
-        return res.status(400).json({message: 'email and password are required'}); 
+    const {error: errorJoi} = loginSchema.validate(req.body); 
+    if(errorJoi){
+        return res.status(400).json({message: errorJoi.details[0].message})
     }
+
     const user = await authService.login(email,password); 
 
     const token = jwt.sign(
