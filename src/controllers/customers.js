@@ -1,4 +1,6 @@
 const customersService = require('../services/customers');
+const { createSchema,updateSchema } = require('../validators/customers.validator'); 
+
 
 const getAll = async (req, res) => {
     try{
@@ -29,18 +31,11 @@ const create = async (req, res)=>{
     try{
         const {name,phone,email} = req.body; 
 
-        const errors = {}; 
-
-        if(!name){
-            errors.name = 'Name is required'; 
-        }
-        if(!phone){
-            errors.phone = 'Phone is required'; 
+        const {error: errorJoi} = createSchema.validate(req.body); 
+        if(errorJoi){
+            return res.status(400).json({message: errorJoi.details[0].message}); 
         }
 
-        if(Object.keys(errors).length >0){
-            return res.status(400).json({errors}); 
-        }
         const customers = await customersService.create(name,phone,email); 
         res.status(201).json(customers);
     }
@@ -54,18 +49,11 @@ const update = async (req, res) => {
         const{id} = req.params;
         const{name,phone,email} = req.body;
 
-        const errors = {}; 
-
-        if(!name){
-            errors.name = 'Name is required'; 
-        }
-        if(!phone){
-            errors.phone = 'Phone is required'; 
+        const {error: errorJoi} = updateSchema.validate(req.body); 
+        if(errorJoi){
+            return res.status(400).json({message: errorJoi.details[0].message}); 
         }
 
-        if(Object.keys(errors).length >0){
-            return res.status(400).json({errors}); 
-        }
 
         const customers = await customersService.update(id,name,phone,email);
         if(!customers){
