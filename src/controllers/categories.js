@@ -1,5 +1,6 @@
 
 const categoriesService = require('../services/categories'); 
+const {createSchema, updateSchema} = require('../validators/categories.validator');
 
 const getAll = async (req, res)=>{
     try{
@@ -27,9 +28,12 @@ const getById = async (req, res)=>{
 const create = async (req,res) => {
     try{
         const {name , description} = req.body;
-        if(!name){
-            return res.status(400).json({message: 'Name is required'});
+        
+        const {error: errorJoi} = createSchema.validate(req.body); 
+        if(errorJoi){
+            return res.status(400).json({message: errorJoi.details[0].message});
         }
+
         const category = await categoriesService.create(name,description);
         res.status(201).json(category); 
     }
@@ -42,9 +46,12 @@ const update = async (req,res) => {
         try{
             const {id} = req.params;
             const {name, description} = req.body;
-            if(!name){
-                return res.status(400).json({message: 'Name is required'}); 
+            
+            const {error: errorJoi} = updateSchema.validate(req.body); 
+            if(errorJoi){
+                return res.status(400).json({message: errorJoi.details[0].message}); 
             }
+
             const category = await categoriesService.update(id,name,description); 
             if(!category){
                 return res.status(404).json({message: 'Category not found'});
