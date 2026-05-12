@@ -1,4 +1,5 @@
 const ordersService = require('../services/orders');
+const {createSchema} = require('../validators/orders.validator'); 
 
 const getAll = async(req,res) =>{
     try{
@@ -31,22 +32,14 @@ const getById = async(req,res) =>{
 const create = async(req,res) => {
     try{
         const user_id = req.user.id; 
+        
+        const{error: errorJoi} = createSchema.validate(req.body); 
+        if(errorJoi){
+            return res.status(400).json({message: errorJoi.details[0].message}); 
+        }
         const customer = await ordersService.getCustomerByUserId(user_id); 
         const{items} =req.body; 
 
-        const errors = {};
-
-        if(!items || !Array.isArray(items) || items.length === 0){
-            errors.items ='items must be a non-empty array'; 
-        }
-
-        if(!customer){
-            errors.customer = 'Customer not found' ; 
-        }
-
-        if(Object.keys(errors).length > 0){
-            return res.status(400).json({errors}); 
-        }
         const orders = await ordersService.create(customer.id, items); 
         res.status(201).json(orders);
     }
