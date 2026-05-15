@@ -9,3 +9,18 @@ test('login with wrong password should return 401', async() => {
 
     expect(respone.status).toBe(401);
 });
+
+test('register with short password should return 400', async() =>{
+    const respone = await request(app)
+    .post('/auth/register')
+    .send({
+        name: 'Test',
+        email: 'test@test.com',
+        password: '123',
+        role: 'customer',
+        phone: '0501234567'
+    })
+
+    expect(respone.status).toBe(400);
+}); 
+
