@@ -1,6 +1,5 @@
 const request = require('supertest'); 
 const app = require('../src/app'); 
-const { create } = require('../src/services/categories');
 
 
 test('GET all categories should return 200' , async () => {

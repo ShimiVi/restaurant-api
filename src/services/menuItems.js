@@ -22,7 +22,7 @@ const update = async(id,name,price,category_id,is_available = true) => {
 }
 
 const deleteOne = async(id) => {
-    const result = await pool.query('delete from menu_items where id=$1', [id]);
+    const result = await pool.query('delete from menu_items where id=$1  RETURNING *', [id]);
     return result.rows[0];
 }
 
