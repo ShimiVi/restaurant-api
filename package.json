@@ -7,6 +7,10 @@
     "test": "jest",
     "dev": "nodemon server.js"
   },
+  "jest": {
+    "globalSetup": "./tests/setup.js",
+    "globalTeardown": "./tests/teardown.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
